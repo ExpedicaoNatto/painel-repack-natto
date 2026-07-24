@@ -322,7 +322,9 @@
   </section>
 
   <section class="card">
-    <h2><span class="bar"></span>Lançamentos desta sessão</h2>
+    <h2><span class="bar"></span>Lançamentos desta sessão
+      <button type="button" class="btn-ghost" id="clearLogBtn" style="margin-left:auto; padding:4px 12px; font-size:11.5px;">Limpar histórico</button>
+    </h2>
     <p class="sub">Histórico dos lançamentos enviados neste navegador desde que a página foi aberta.</p>
     <table>
       <thead>
@@ -405,6 +407,10 @@
     produtoPreview.textContent = 'Digite o código do produto para ver a descrição.';
   });
 
+  document.getElementById('clearLogBtn').addEventListener('click', () => {
+    logBody.innerHTML = '<tr><td colspan="7" class="empty">Nenhum lançamento enviado ainda nesta sessão.</td></tr>';
+  });
+
   function addLogRow(entry) {
     const emptyRow = logBody.querySelector('.empty');
     if (emptyRow) emptyRow.closest('tr').remove();
@@ -459,7 +465,7 @@
       setRowStatus(tr, 'err', err.message);
     }
   }
-  
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!isConfigured) return;
@@ -490,6 +496,5 @@
   });
 </script>
 
-  
 </body>
 </html>
